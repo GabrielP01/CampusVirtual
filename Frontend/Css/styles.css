@@ -1,0 +1,222 @@
+*{
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body{
+    background-color: whitesmoke;
+
+}
+
+h2{
+    text-align: center;
+}
+
+nav {
+    width: 100%;
+    background: #1e1e1e;
+    padding: 15px 25px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 25px;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: 0.25s ease;
+}
+
+
+
+nav ul {
+    display: flex;
+    gap: 100px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    display:flex;
+    list-style: none;
+
+}
+
+#home-link {
+    margin-right: 1000px;
+}
+
+nav a:hover {
+    background: #2e2e2e;
+    transform: translateY(-2px);
+}
+
+nav a.active {
+    background: #4caf50; 
+    color: white;
+    box-shadow: 0 3px 12px rgba(76, 175, 80, 0.6);
+}
+
+#header-div {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+    background-color: whitesmoke;
+    justify-content: center;
+}
+
+#logo-img{
+    height: 80px;
+    width: 80px;
+}
+
+#school-img{
+    width: 100%;
+    margin-top: 20px;
+    height: 75vh;
+}
+
+.forms {
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    gap: 15px;
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    
+}
+
+label {
+    text-align: center;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.forms button {
+    display:flex;
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    justify-content: center;
+    margin-top:auto;
+    
+}
+
+#button-logout{
+    background-color:#f44336;
+}
+
+#form-addusers{
+    display: flex;
+    flex-direction: column;
+    width: 80vh;
+    gap:5px;
+    height: auto;
+}
+
+#div-logout{
+    width: 70vh;
+
+}
+#select-rol{
+    display: flex;
+    width: 150px;
+    padding: 5px;
+    margin-top: 30px;
+    margin-left: auto;
+}
+h3{
+    margin-left: auto;
+}
+
+.div-roles{
+    display:flex;
+    gap:20vh;
+    justify-content: center;
+    margin:10px auto;
+}
+
+
+#button-addrol{
+    width: 150px;
+    padding: 10px;
+    margin:auto;
+    
+}
+
+#select-roles #select-addedroles{
+    margin:auto;
+    width: 200px;
+    
+}
+
+#button-deleterol{
+    width: 150px;
+    padding: 10px;
+    margin:auto;
+    background-color:#f44336 ;
+}
+
+#form-profile{
+    display: flex;
+    flex-direction:column;
+    width: 80vh;
+    gap:5px;
+    height: auto;
+
+}
+
+#form-profile div{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+#form-profile div label{
+    
+    width: 200px;     
+    text-align: left;
+     
+    margin-right: 10px; 
+}
+
+#add-career-form{
+    display: flex;
+    flex-direction: column;
+    width: 80vh;
+    height: auto;
+}
+#add-career-form div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+#add-career-form button{
+    margin: auto;
+}

@@ -15,7 +15,7 @@ export default async function editCareer(CONTENT) {
     const rescareers = await careers.json();
     rescareers.forEach(career => {
         console.log(career)
-        const option=document.createElement("option")
+        const option=document.createElement("option");
         option.value=career.idCarrera;
         option.innerText=career.nombre;
         selectCareer.appendChild(option)

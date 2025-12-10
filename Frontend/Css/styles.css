@@ -46,6 +46,7 @@ nav ul {
 }
 
 nav li {
+    position:relative;
     display:flex;
     list-style: none;
 
@@ -219,4 +220,21 @@ h3{
 
 #add-career-form button{
     margin: auto;
+}
+
+form .button-delete{
+    width: 150px;
+    padding: 10px;
+    margin:auto;
+    background-color:#f44336 ;
+}
+
+
+#form-add-materia{
+    height: auto;
+    width: 60vh;
+}
+
+form select{
+    height: 30px;
 }

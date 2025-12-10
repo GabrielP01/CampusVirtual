@@ -9,12 +9,8 @@ export default function rolHandler(){
             nav.innerHTML=`<ul>
             <li><a href="/">Inicio</a></li>
             <li><a href="/profile">Perfil</a></li>
-            <li>
-                <ul>
-                    <li><a href="/addUsers">Agregar usuarios</a></li>
-                    <li><a href="/deleteUsers">Eliminar usuarios</a></li>
-                </ul>
-            </li>
+            <li><a href="/addUsers">Agregar usuarios</a></li>
+            <li><a href="/deleteUsers">Eliminar usuarios</a></li>
             <li><a href="/logout">Salir</a></li>
         </ul>`;
             break;
@@ -22,10 +18,12 @@ export default function rolHandler(){
             nav.innerHTML=`<ul>
             <li><a href="/">Inicio</a></li>
             <li><a href="/profile">Perfil</a></li>
-            <li><a href="/functions">Funciones</a></li>
             <li><a href="/addCareer">Agregar carrera</a></li>
             <li><a href="/editCareer">Editar carreras</a></li>
             <li><a href="/deleteCareer">Eliminar carreras</a></li>
+            <li><a href="/addMaterias">Agregar materias</a></li>
+            <li><a href="/editMaterias">Editar materias</a></li>
+            <li><a href="/deleteMaterias">Eliminar materias</a></li>
             <li><a href="/logout">Salir</a></li>
         </ul>`;
             break;

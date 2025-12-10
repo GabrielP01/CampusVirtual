@@ -8,6 +8,9 @@ import addCareer from "../views/addCareer.js"
 import deleteUsers from "../views/deleteUsers.js"
 import editCareer from "../views/editCareer.js"
 import deleteCareer from "../views/deleteCareer.js"
+import addMaterias from "../views/addMaterias.js"
+import editMaterias from "../views/editMaterias.js"
+import deleteMaterias from "../views/deleteMaterias.js"
 
 export default function routeHandler(route){
     const CONTENT = document.getElementById("content")
@@ -41,6 +44,15 @@ export default function routeHandler(route){
             break;
             case "/deleteCareer":
             deleteCareer(CONTENT)
+            break;
+            case "/addMaterias":
+            addMaterias(CONTENT);
+            break;
+            case "/editMaterias":
+            editMaterias(CONTENT);
+            break;
+            case "/deleteMaterias":
+            deleteMaterias(CONTENT);
             break;
             default:
                 home(CONTENT);

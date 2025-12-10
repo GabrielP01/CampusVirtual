@@ -11,6 +11,7 @@ using LoginRequest = MinimalApiDapper.Models.LoginRequest;
 using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using System.Data;
 
 namespace MinimalApiDapper;
 
@@ -58,9 +59,7 @@ public class Program
 
 
         string connectionString = "Server=DESKTOP-QZLN37\\SQLEXPRESS;Database=DBWebEscuelaFinal;User Id=UserWebEscuela;Password=DBLogin123;TrustServerCertificate=true";
-
-        app.MapGet("/ping", () => "pong");
-
+        
 
         app.MapPost("/login", async (LoginRequest req) =>
         {
@@ -238,47 +237,61 @@ public class Program
            return career > 0 ? Results.NoContent() : Results.NotFound();
         });
 
-
-        app.MapPost("/menu", async (Menu menu) =>
+        app.MapPost("/materias",async (Materias materia) =>
         {
-            using var connection = new SqlConnection(connectionString);
-            int ID = await connection.ExecuteScalarAsync<int>(
-                "insert_menu",
-                new { menu.Menu_Nombre, menu.Menu_Descripcion },
-                commandType: System.Data.CommandType.StoredProcedure
+            using var connection=new SqlConnection(connectionString);
+            var id=await connection.ExecuteScalarAsync<int>(
+                "Materias_Insert",
+                new {materia.IDCarrera, materia.Nombre,materia.Descripcion,materia.Duracion},
+                commandType:System.Data.CommandType.StoredProcedure
             );
-            menu.Menu_ID = ID;
-            return Results.Created($"/menu/{menu.Menu_ID}", menu);
+            materia.IDMateria=id;
+            return Results.Created($"/materias/{materia.IDMateria}", materia);
         });
 
-        app.MapDelete("/menu/{id}", async (int id) =>
+        app.MapGet("/materias", async () =>
         {
-            using var connection = new SqlConnection(connectionString);
-            var result = await connection.ExecuteAsync(
-                "Menu_Delete",
-                new { Menu_ID = id },
-                commandType: System.Data.CommandType.StoredProcedure
+            using var connection=new SqlConnection(connectionString);
+            var materias=await connection.QueryAsync<Materias>(
+                "Materias_List",
+                commandType:System.Data.CommandType.StoredProcedure
             );
-            return result > 0 ? Results.NoContent() : Results.NotFound();
+            return materias is not null ? Results.Ok(materias) : Results.NotFound();
         });
 
-        app.MapPut("/menu/{id}", async (int id, Menu menu) =>
-        {
-            using var connection = new SqlConnection(connectionString);
-            var result = await connection.ExecuteAsync(
-                "Menu_Update",
-                new { menu.Menu_Nombre, menu.Menu_Descripcion, Menu_ID = id },
-                commandType: System.Data.CommandType.StoredProcedure
+        app.MapGet("/materias/{id}",async (int id)=>{
+            using var connection=new SqlConnection(connectionString);
+            var materia=await connection.QueryAsync<Materias>(
+                "Materias_ListById",
+                new{IDMateria=id},
+                commandType:System.Data.CommandType.StoredProcedure
             );
-            return result > 0 ? Results.Ok() : Results.NotFound();
+            return materia is not null ? Results.Ok(materia) : Results.NotFound();
         });
 
+        app.MapPut("/materias/{id}",async (int id,Materias materia) =>
+        {
+           using var connection=new SqlConnection(connectionString);
+           var edit= await connection.ExecuteAsync(
+            "Materias_Update",
+            new{materia.Nombre,materia.Descripcion,materia.Duracion,materia.IDCarrera, IDMateria=id},
+            commandType:System.Data.CommandType.StoredProcedure
+           );
+            return edit > 0 ? Results.Ok() : Results.NotFound();
+       });
 
+       app.MapDelete("/materias/{id}",async (int id) =>
+       {
+           using var connection=new SqlConnection(connectionString);
+           var delete=await connection.ExecuteAsync(
+            "Materias_Delete",
+            new{IDMateria=id},
+            commandType:System.Data.CommandType.StoredProcedure
+           );
+           return delete > 0 ? Results.NoContent() : Results.NotFound();
+       });
 
-
-
-
-
+       
 
         app.Run();
     }

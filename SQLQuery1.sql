@@ -59,7 +59,32 @@ create table UsuariosRoles(
 )
 go
 
+create table Materias(
+	IDMateria int identity(1,1) primary key,
+	Nombre varchar(50) not null,
+	Descripcion varchar(100) not null,
+	Duracion varchar(20) not null,
+	IDCarrera int,
+	foreign key(IDCarrera) references Carreras(IDCarrera)
+)
+go
 
+
+create table Inscripciones(
+	IDInscripcion int identity(1,1) primary key,
+	IDUsuario int,
+	IDMateria int,
+	foreign key(IDUsuario) references Usuarios(IDUsuario),
+	foreign key(IDMateria) references Materias(IDMateria),
+	constraint Unique_Inscripcion unique (IDUsuario,IDMateria)
+)
+go
+
+
+
+
+
+/*procedures*/
 
 
 create procedure Usuarios_Login(
@@ -205,7 +230,70 @@ where Carreras.IDCarrera=@IDCarrera
 end
 go
 
-exec Carreras_ListById 1
+
+create procedure Materias_Insert(
+	@IDCarrera int,
+	@Nombre varchar(50),
+	@Descripcion varchar(100),
+	@Duracion varchar(20)
+)
+as
+begin
+insert Materias (IDCarrera,Nombre,Descripcion,Duracion) values (@IDCarrera,@Nombre,@Descripcion,@Duracion)
+end
+go
+
+create procedure Materias_List
+as
+select * from Materias
+go
+
+
+create procedure Materias_ListById(
+@IDMateria int
+)
+as
+select * from Materias
+where @IDMateria=Materias.IDMateria
+go
+
+create procedure Materias_Update(
+@IDMateria int,
+@Nombre varchar(50),
+@Descripcion varchar(100),
+@Duracion varchar (20),
+@IDCarrera int
+)
+as
+begin
+update Materias set
+Nombre=@Nombre,
+Descripcion=@Descripcion,
+Duracion=@Duracion,
+IDCarrera=@IDCarrera
+where @IDMateria=IDMateria
+end
+go
+
+create procedure Materias_Delete(
+@IDMateria int
+)
+as
+delete Materias 
+where @IDMateria=IDMateria
+go
+
+create procedure Incripcion_Insert(
+@IDUsuario int,
+@IDMateria int
+)
+as
+begin
+insert Inscripciones (IDUsuario,IDMateria) values (@IDUsuario,@IDMateria)
+end
+go
+
+
 
 
 

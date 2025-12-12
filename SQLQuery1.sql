@@ -70,7 +70,7 @@ create table Materias(
 go
 
 
-create table Inscripciones(
+create table InscripcionesMaterias(
 	IDInscripcion int identity(1,1) primary key,
 	IDUsuario int,
 	IDMateria int,
@@ -80,8 +80,15 @@ create table Inscripciones(
 )
 go
 
-
-
+create table InscripcionesCarreras(
+    IDInscripcion int identity(1,1) primary key,
+    IDUsuario int,
+    IDCarrera int,
+    foreign key(IDUsuario) references Usuarios(IDUsuario),
+    foreign key(IDCarrera) references Carreras(IDCarrera),
+    constraint Unique_Inscripcion_Carrera unique (IDUsuario, IDCarrera)
+)
+go
 
 
 /*procedures*/
@@ -283,17 +290,42 @@ delete Materias
 where @IDMateria=IDMateria
 go
 
-create procedure Incripcion_Insert(
+create procedure InscripcionesMaterias_Insert(
 @IDUsuario int,
 @IDMateria int
 )
 as
 begin
-insert Inscripciones (IDUsuario,IDMateria) values (@IDUsuario,@IDMateria)
+insert InscripcionesMaterias (IDUsuario,IDMateria) values (@IDUsuario,@IDMateria)
 end
 go
 
 
+create procedure InscripcionesMaterias_List
+as
+select * from InscripcionesMaterias
+go
+
+
+
+
+create procedure InscripcionesCarreras_Insert(
+@IDUsuario int,
+@IDCarrera int
+)
+as
+begin
+insert InscripcionesCarreras (IDUsuario,IDCarrera) values (@IDUsuario,@IDCarrera)
+end
+go
+
+exec InscripcionesCarreras_Insert 1, 1
+
+
+create procedure InscripcionesCarreras_List
+as
+select * from InscripcionesCarreras
+go
 
 
 
@@ -311,7 +343,6 @@ insert Roles (Rol) values ('PRECEPTOR')
 insert Roles (Rol) values ('ALUMNO')
 insert Roles (Rol) values ('EXCLUIDO')
 
-exec Roles_List
 
 insert UsuariosRoles (IDUsuario,Rol) values (1,'ADMINISTRADOR')
 insert UsuariosRoles (IDUsuario,Rol) values (1,'DIRECTOR DE ESTUDIOS')
@@ -319,7 +350,4 @@ insert UsuariosRoles (IDUsuario,Rol) values (1,'PROFESOR')
 insert UsuariosRoles (IDUsuario,Rol) values (1,'PRECEPTOR')
 insert UsuariosRoles (IDUsuario,Rol) values (1,'ALUMNO')
 
-select * from UsuariosRoles
 
-
-EXEC Usuarios_List

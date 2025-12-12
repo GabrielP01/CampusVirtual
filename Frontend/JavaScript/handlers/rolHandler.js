@@ -47,6 +47,7 @@ export default function rolHandler(){
             nav.innerHTML=`<ul>
             <li><a href="/">Inicio</a></li>
             <li><a href="/profile">Perfil</a></li>
+            <li><a href="/carreraInscripcion">Carreras</a></li>
             <li><a href="/functions">Funciones</a></li>
             <li><a href="/logout">Salir</a></li>
         </ul>`;

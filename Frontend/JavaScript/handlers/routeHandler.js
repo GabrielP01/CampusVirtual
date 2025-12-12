@@ -11,6 +11,7 @@ import deleteCareer from "../views/deleteCareer.js"
 import addMaterias from "../views/addMaterias.js"
 import editMaterias from "../views/editMaterias.js"
 import deleteMaterias from "../views/deleteMaterias.js"
+import carreraInscripcion from "../views/carreraInscripcion.js"
 
 export default function routeHandler(route){
     const CONTENT = document.getElementById("content")
@@ -53,6 +54,9 @@ export default function routeHandler(route){
             break;
             case "/deleteMaterias":
             deleteMaterias(CONTENT);
+            break;
+            case "/carreraInscripcion":
+            carreraInscripcion(CONTENT);
             break;
             default:
                 home(CONTENT);

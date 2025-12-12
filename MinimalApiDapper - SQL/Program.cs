@@ -291,8 +291,71 @@ public class Program
            return delete > 0 ? Results.NoContent() : Results.NotFound();
        });
 
-       
+       app.MapPost("/inscripcionesmaterias",async (InscripcionesMaterias inscripcion) =>
+       {
+          using var connection=new SqlConnection(connectionString);
+          var id=await connection.ExecuteScalarAsync<int>(
+            "InscripcionesMaterias_Insert",
+            new{inscripcion.IDUsuario,inscripcion.IDMateria},
+            commandType:System.Data.CommandType.StoredProcedure
+          ) ;
+          inscripcion.IDInscripcion=id;
+          return Results.Created($"/inscripcionesmaterias/{inscripcion.IDInscripcion}", inscripcion);
+       });
 
+       app.MapGet("/inscripcionesmaterias", async () =>
+        {
+            using var connection=new SqlConnection(connectionString);
+            var inscripcion=await connection.QueryAsync<InscripcionesMaterias>(
+                "InscripcionesMaterias_List",
+                commandType:System.Data.CommandType.StoredProcedure
+            );
+            return inscripcion is not null ? Results.Ok(inscripcion) : Results.NotFound();
+        });
+
+        app.MapGet("/inscripcionesmaterias/{id}",async (int id)=>{
+            using var connection=new SqlConnection(connectionString);
+            var inscripcion=await connection.QueryAsync<InscripcionesMaterias>(
+                "InscripcionesMaterias_ListById",
+                new{IDInscripcion=id},
+                commandType:System.Data.CommandType.StoredProcedure
+            );
+            return inscripcion is not null ? Results.Ok(inscripcion) : Results.NotFound();
+        });
+
+        app.MapPost("/inscripcionescarreras",async (InscripcionesCarreras inscripcion) =>
+       {
+          using var connection=new SqlConnection(connectionString);
+          var id=await connection.ExecuteScalarAsync<int>(
+            "InscripcionesCarreras_Insert",
+            new{inscripcion.IDUsuario,inscripcion.IDCarrera},
+            commandType:System.Data.CommandType.StoredProcedure
+          ) ;
+          inscripcion.IDInscripcion=id;
+          return Results.Created($"/inscripcionescarreras/{inscripcion.IDInscripcion}", inscripcion);
+       });
+
+       app.MapGet("/inscripcionescarreras", async () =>
+        {
+            using var connection=new SqlConnection(connectionString);
+            var inscripcion=await connection.QueryAsync<InscripcionesCarreras>(
+                "InscripcionesCarreras_List",
+                commandType:System.Data.CommandType.StoredProcedure
+            );
+            return inscripcion is not null ? Results.Ok(inscripcion) : Results.NotFound();
+        });
+
+        app.MapGet("/inscripcionescarreras/{id}",async (int id)=>{
+            using var connection=new SqlConnection(connectionString);
+            var inscripcion=await connection.QueryAsync<InscripcionesCarreras>(
+                "InscripcionesCarreras_ListById",
+                new{IDInscripcion=id},
+                commandType:System.Data.CommandType.StoredProcedure
+            );
+            return inscripcion is not null ? Results.Ok(inscripcion) : Results.NotFound();
+        });
+        
+        
         app.Run();
     }
 }

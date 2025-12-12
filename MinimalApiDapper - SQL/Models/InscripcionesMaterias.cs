@@ -1,6 +1,6 @@
 namespace MinimalApiDapper.Models;
 
-public class Inscripciones
+public class InscripcionesMaterias
 {
     
     public int IDInscripcion{get;set;}

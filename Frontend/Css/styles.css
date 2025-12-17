@@ -147,7 +147,7 @@ input {
     width: 150px;
     padding: 5px;
     margin-top: 30px;
-    margin-left: auto;
+    margin:auto
 }
 h3{
     margin-left: auto;
@@ -237,4 +237,11 @@ form .button-delete{
 
 form select{
     height: 30px;
+}
+
+#userDefaultImg{
+    display: block;
+    margin: 20px auto;
+    width: 150px;
+    height: 150px;
 }

@@ -53,9 +53,9 @@ create table Carreras(
 
 
 create table UsuariosRoles(
-	IDUsuario int foreign key references Usuarios(IDUsuario) on delete cascade not null, --foreing key de Usuarios, el on cascade es una condicion, es cuando yo lo borre borre el registro si borro el usuario
-	Rol varchar(20) foreign key references Roles(Rol) not null, --foreing key de Roles
-	constraint PKUR unique (IDUsuario,Rol), --esa diciendo que pkur(primary key usurios roles) 
+	IDUsuario int foreign key references Usuarios(IDUsuario) on delete cascade not null,
+	Rol varchar(20) foreign key references Roles(Rol) not null,
+	constraint PKUR unique (IDUsuario,Rol), 
 )
 go
 
@@ -87,6 +87,27 @@ create table InscripcionesCarreras(
     foreign key(IDUsuario) references Usuarios(IDUsuario),
     foreign key(IDCarrera) references Carreras(IDCarrera),
     constraint Unique_Inscripcion_Carrera unique (IDUsuario, IDCarrera)
+)
+go
+
+create table notas(
+	IDNota int identity(1,1) primary key,
+	Nota int,
+	IDUsuario int,
+	IDMateria int,
+	foreign key(IDUsuario) references Usuarios(IDUsuario),
+	foreign key(IDMateria) references Materias(IDMateria),
+	constraint Unique_Notas_Materias unique (IDUsuario,IDMateria)
+)
+go
+
+create table asignarProfesor(
+	IDAsignacion int identity(1,1) primary key,
+	IDUsuario int,
+	IDMateria int,
+	foreign key(IDUsuario) references Usuarios(IDUsuario),
+	foreign key(IDMateria) references Materias(IDMateria),
+	constraint Unique_Asignar_Profesor unique (IDUsuario,IDMateria)
 )
 go
 
@@ -133,8 +154,11 @@ go
 
 create procedure Roles_List
 as
-select Rol from Roles
+select * from UsuariosRoles
 go
+
+
+
 
 
 create procedure UsuarioRoles_Insert(
@@ -319,7 +343,7 @@ insert InscripcionesCarreras (IDUsuario,IDCarrera) values (@IDUsuario,@IDCarrera
 end
 go
 
-exec InscripcionesCarreras_Insert 1, 1
+
 
 
 create procedure InscripcionesCarreras_List
@@ -328,6 +352,55 @@ select * from InscripcionesCarreras
 go
 
 
+create procedure Notas_Insert(
+@Nota int,
+@IDUsuario int,
+@IDMateria int
+)
+as
+begin
+insert Notas (Nota,IDUsuario,IDMateria) values(@Nota,@IDUsuario,@IDMateria)
+end
+go
+
+create procedure Notas_List
+as
+select * from Notas
+go
+
+create procedure Notas_ListById(
+	@IDNota int
+)
+as
+select * from Notas
+where @IDNota=Notas.IDNota
+go
+
+
+create procedure AsignarProfesor_Insert(
+	@IDUsuario int,
+	@IDMateria int
+)
+as
+begin
+insert asignarProfesor (IDUsuario,IDMateria) values (@IDUsuario,@IDMateria)
+end
+go
+
+create procedure AsignarProfesor_List
+as
+select * from asignarProfesor
+go
+
+create procedure AsignarProfesor_ListById(
+	@IDAsignacion int
+)
+as
+select * from asignarProfesor
+where @IDAsignacion=asignarProfesor.IDAsignacion
+go
+
+exec AsignarProfesor_List
 
 
 exec usuarios_insert 'admin',1,'admin@mail.com','11111111','avenida 1234','admin'

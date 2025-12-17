@@ -8,13 +8,13 @@ export default async function addMaterias(CONTENT){
             <select id="select-carreras"></select>
             <br>
             <label for="name-materia">Nombre</label>
-            <input type="text" id="name-materia">
+            <input type="text" id="name-materia" maxlength="50" required>
             <br>
             <label for="descripcion-materia">Descripcion</label>
-            <input type="text" id="descripcion-materia">
+            <input type="text" id="descripcion-materia" maxlength="100" required>
             <br>
             <label for="duracion-materia">Duracion</label>
-            <input type="text" id="duracion-materia">
+            <input type="text" id="duracion-materia" maxlength="20" required>
             <button>Agregar</button>
         </form>
     

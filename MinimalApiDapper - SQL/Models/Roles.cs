@@ -2,6 +2,6 @@ namespace MinimalApiDapper.Models;
 
 public class Roles
 {
-    public int IdUsuario{get;set;}
+    public int IDUsuario{get;set;}
     public string Rol { get; set; } 
 }

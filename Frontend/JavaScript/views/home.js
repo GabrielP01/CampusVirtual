@@ -1,5 +1,3 @@
-
-
 export default function home(CONTENT){
     
     CONTENT.innerHTML=`

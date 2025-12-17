@@ -18,18 +18,19 @@ export default function divLogout(CONTENT){
         
     });
     };
-    
     CONTENT.innerHTML=`
-    <div id="div-logout" class="forms">
+    <form id="div-logout" class="forms">
         <div>
-            <h3>Cambiar Rol</h3>
+            <h2>Cambiar Rol</h2>
+            
             <select id="select-rol">
                 
             </select>
         <br>
         </div>
+        <img id="userDefaultImg" src="./imagenes/userDefault.png">
         <button id="button-logout">Cerrar sesion</button>
-    </div>
+    </form>
     `
     getRoles();
     

@@ -1,23 +1,25 @@
 
 export default function addUsers(CONTENT){
+    const regExp=/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
     CONTENT.innerHTML=`
     <form id="form-addusers" class="forms" >
         <h2>Agregar Usuario</h2>
         <br>
         <label for="input-nombre">Nombre:</label>
-        <input type="text" id="input-nombre" placeholder="Nombre" required>
+        <input type="text" id="input-nombre" placeholder="Nombre" maxlength="50" required>
         <br>
         <label for="input-mail">Mail:</label>
-        <input type="text" id="input-mail" placeholder="Mail" required>
+        <input type="text" id="input-mail" placeholder="Mail" required pattern="${regExp}">
         <br>
         <label for="input-dni">Numero de Documento:</label>
-        <input type="number" id="input-dni" placeholder="Numero de documento" required>
+        <input type="number" id="input-dni" placeholder="Numero de documento" required maxlength="20">
         <br>
         <label for="input-telefono">Telefono:</label>
-        <input type="number" id="input-telefono" placeholder="Telefono" required>
+        <input type="number" id="input-telefono" placeholder="Telefono" required maxlength="20">
         <br>
         <label for="input-direccion">Direccion:</label>
-        <input type="text" id="input-direccion" placeholder="Direccion" required>
+        <input type="text" id="input-direccion" placeholder="Direccion" required maxlength="100">
         <br>
 
         <label for="select-roles">Agregar roles</label>

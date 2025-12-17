@@ -1,3 +1,6 @@
+
+
+
 export default async function carreraInscripcion(CONTENT){
     const tengoCarrera=await fetch("http://localhost:5227/inscripcionescarreras")
     const res=await tengoCarrera.json();
@@ -8,7 +11,7 @@ export default async function carreraInscripcion(CONTENT){
             auxArr.push("1")
         }
     });
-    if(auxArr==""){
+    if(auxArr.length===0){
         CONTENT.innerHTML=`
         <form id="form-inscripcion-carrera" class="forms">
             <h2>Inscripcion a Carrera</h2>
@@ -21,6 +24,7 @@ export default async function carreraInscripcion(CONTENT){
             <button type="submit">Inscribirse</button>
         </form>
         `
+        
         const select=document.getElementById("inscribirse-carrera");
         const getCarreras= await fetch("http://localhost:5227/carreras");
         const carreras= await getCarreras.json();
@@ -50,6 +54,42 @@ export default async function carreraInscripcion(CONTENT){
                 alert("Inscripcion exitosa")
             }
         })
+    }
+    else{
+        const getCarreras = await fetch("http://localhost:5227/carreras")
+        const carreras = await getCarreras.json();
+        res.forEach(ins=>{
+            if(idUser==ins.idUsuario){
+                const carreraInscripta=carreras.find(e=> e.idCarrera==ins.idCarrera)
+
+                CONTENT.innerHTML=`
+            <form class="forms" id="form-consultar-notas">
+                <h2>Carreras</h2>
+                <br>
+                <h3>Estas inscripto a ${carreraInscripta.nombre}</h3>
+                <h5>Desea consultar las notas de sus materias?</h5>
+                <button type="submit">Consultar</button>
+            </form>
+        `
+            }
+        })
+        
+        
+        const form=document.getElementById("form-consultar-notas")
+
+        form.addEventListener("submit",async (e)=>{
+            e.preventDefault();
+            const consulta=await fetch(`http://localhost:5227/notas`)
+            if(!consulta.ok){
+                alert("No se encontraron materias")
+            }
+            else{
+                routeHandler("/notas")
+                
+            }
+        })
+        
+
     }
 
     

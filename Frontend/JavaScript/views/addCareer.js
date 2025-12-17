@@ -6,19 +6,19 @@ export default async function addCareer(CONTENT){
 
         <div>
         <label for="career-name">Nombre de la carrera</label>
-        <input type="text" id="career-name">
+        <input type="text" id="career-name" maxlength="50">
         </div>
         <br>
 
         <div>
         <label for="career-sigla">Sigla</label>
-        <input type="text" id="career-sigla">
+        <input type="text" id="career-sigla" maxlength="10">
         </div>
         <br>
 
         <div>
-        <label for="career-año">Año de curso</label>
-        <input type="text" id="career-año">
+        <label for="career-año">Duracion (en años)</label>
+        <input type="text" id="career-año"  maxlength="2">
         </div>
         <br>
         <button type="submit">Crear carrera</button>

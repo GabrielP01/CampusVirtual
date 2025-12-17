@@ -213,3 +213,4 @@ C:\Users\gaby\Desktop\FinalAlgoritmos2\MinimalApiDapper - SQL\obj\Debug\net8.0\M
 C:\Users\gaby\Desktop\FinalAlgoritmos2\MinimalApiDapper - SQL\obj\Debug\net8.0\MinimalApiDapper.genruntimeconfig.cache
 C:\Users\gaby\Desktop\FinalAlgoritmos2\MinimalApiDapper - SQL\obj\Debug\net8.0\ref\MinimalApiDapper.dll
 C:\Users\gaby\Desktop\FinalAlgoritmos2\MinimalApiDapper - SQL\obj\Debug\net8.0\MinimalApiDapper.sourcelink.json
+C:\Users\gaby\Desktop\FinalAlgoritmos2\MinimalApiDapper - SQL\obj\Debug\net8.0\swae.build.ex.cache

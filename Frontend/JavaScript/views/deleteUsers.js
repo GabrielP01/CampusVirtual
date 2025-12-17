@@ -4,7 +4,7 @@ export default async function deleteUsers(CONTENT){
             <label for="form-dni-delete">Selecciona el dni del usuario a eliminar</label>
             <input type="number" id="form-dni-delete">
             <br>
-            <button>Eliminar usuario</button>
+            <button class="button-delete">Eliminar usuario</button>
         </form>
     `
 

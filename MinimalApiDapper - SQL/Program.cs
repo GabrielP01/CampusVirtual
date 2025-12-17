@@ -98,7 +98,7 @@ public class Program
 
             foreach (var user in usuarios)
             {
-                user.Roles = roles.Where(r => r.IdUsuario == user.IDUsuario).ToList();
+                user.Roles = roles.Where(r => r.IDUsuario == user.IDUsuario).ToList();
             }
 
             return Results.Ok(usuarios);
@@ -355,7 +355,70 @@ public class Program
             return inscripcion is not null ? Results.Ok(inscripcion) : Results.NotFound();
         });
         
+        app.MapPost("/notas",async (Notas notas) =>
+       {
+          using var connection=new SqlConnection(connectionString);
+          var id=await connection.ExecuteScalarAsync<int>(
+            "Notas_Insert",
+            new{notas.Nota,notas.IDUsuario,notas.IDMateria},
+            commandType:System.Data.CommandType.StoredProcedure
+          ) ;
+          notas.IDNota=id;
+          return Results.Created($"/notas/{notas.IDNota}", notas);
+       });
         
+        app.MapGet("/notas", async () =>
+        {
+            using var connection=new SqlConnection(connectionString);
+            var notas=await connection.QueryAsync<Notas>(
+                "Notas_List",
+                commandType:System.Data.CommandType.StoredProcedure
+            );
+            return notas is not null ? Results.Ok(notas) : Results.NotFound();
+        });
+
+        app.MapGet("/notas/{id}",async (int id)=>{
+            using var connection=new SqlConnection(connectionString);
+            var notas=await connection.QueryAsync<Notas>(
+                "Notas_ListById",
+                new{IDNotas=id},
+                commandType:System.Data.CommandType.StoredProcedure
+            );
+            return notas is not null ? Results.Ok(notas) : Results.NotFound();
+        });
+
+        app.MapPost("/asignarprofesor",async (AsignarProfesor asignacion) =>
+       {
+          using var connection=new SqlConnection(connectionString);
+          var id=await connection.ExecuteScalarAsync<int>(
+            "AsignarProfesor_Insert",
+            new{asignacion.IDUsuario,asignacion.IDMateria},
+            commandType:System.Data.CommandType.StoredProcedure
+          ) ;
+          asignacion.IDAsignacion=id;
+          return Results.Created($"/asignarProfesor/{asignacion.IDAsignacion}", asignacion);
+       });
+
+       app.MapGet("/asignarprofesor", async () =>
+        {
+            using var connection=new SqlConnection(connectionString);
+            var asignacion=await connection.QueryAsync<AsignarProfesor>(
+                "AsignarProfesor_List",
+                commandType:System.Data.CommandType.StoredProcedure
+            );
+            return asignacion is not null ? Results.Ok(asignacion) : Results.NotFound();
+        });
+
+        app.MapGet("/asignarprofesor/{id}",async (int id)=>{
+            using var connection=new SqlConnection(connectionString);
+            var asignacion=await connection.QueryAsync<AsignarProfesor>(
+                "AsignarProfesor_ListById",
+                new{IDAsignar=id},
+                commandType:System.Data.CommandType.StoredProcedure
+            );
+            return asignacion is not null ? Results.Ok(asignacion) : Results.NotFound();
+        });
+
         app.Run();
     }
 }

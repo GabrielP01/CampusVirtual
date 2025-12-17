@@ -39,13 +39,13 @@ export default async function editCareer(CONTENT) {
             <form id="edit-career" class="forms">
                 <h2>Estas editando la carrera ${selectCareer.innerText}</h2>
                 <label for="edit-career-name">Nuevo nombre</label>
-                <input type="text" id="edit-career-name">
+                <input type="text" id="edit-career-name" maxlength="50">
                 <br>
                 <label for="edit-career-sigla">Nueva sigla</label>
-                <input type="text" id="edit-career-sigla">
+                <input type="text" id="edit-career-sigla" maxlength="10">
                 <br>
-                <label for="edit-career-año">Nuevo año de cursada</label>
-                <input type="number" id="edit-career-año">
+                <label for="edit-career-año">Nueva duracion</label>
+                <input type="number" id="edit-career-año" maxlength="2">
                 <br>
                 <button>Editar</button>
             </form>

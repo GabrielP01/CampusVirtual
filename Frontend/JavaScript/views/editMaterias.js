@@ -37,13 +37,13 @@ export default async function editMaterias(CONTENT){
                     <h2>Estas editando ${select.innerText}</h2>
                     <br>
                     <label for="edit-materia-nombre">Nombre</label>
-                    <input id="edit-materia-nombre" type="text">
+                    <input id="edit-materia-nombre" type="text" maxlength="50">
                     <br>
                     <label for="edit-materia-descripcion">Descripcion</label>
-                    <input id="edit-materia-descripcion">
+                    <input id="edit-materia-descripcion" maxlength="100">
                     <br>
                     <label for="edit-materia-duracion">Duracion</label>
-                    <input id="edit-materia-duracion">
+                    <input id="edit-materia-duracion" maxlength="20">
                     <br>
                     <label for="select-edit-carrera">Carrera</label>
                     <select id="select-edit-carrera"></select>

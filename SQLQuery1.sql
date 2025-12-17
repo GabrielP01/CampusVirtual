@@ -50,6 +50,7 @@ create table Carreras(
 	Sigla varchar(10) not null,
 	AñoCursada int not null
 )
+go
 
 
 create table UsuariosRoles(
@@ -152,11 +153,19 @@ as
 select * from Usuarios where IDUsuario=@IDUsuario
 go
 
+
+
 create procedure Roles_List
+as
+select * from Roles
+go
+
+
+
+create procedure UsuariosRoles_List
 as
 select * from UsuariosRoles
 go
-
 
 
 
@@ -414,7 +423,6 @@ insert Roles (Rol) values ('DIRECTOR DE ESTUDIOS')
 insert Roles (Rol) values ('PROFESOR')
 insert Roles (Rol) values ('PRECEPTOR')
 insert Roles (Rol) values ('ALUMNO')
-insert Roles (Rol) values ('EXCLUIDO')
 
 
 insert UsuariosRoles (IDUsuario,Rol) values (1,'ADMINISTRADOR')

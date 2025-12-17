@@ -15,6 +15,7 @@ export default async function addMaterias(CONTENT){
             <br>
             <label for="duracion-materia">Duracion</label>
             <input type="text" id="duracion-materia" maxlength="20" required>
+            <br>
             <button>Agregar</button>
         </form>
     
@@ -24,7 +25,6 @@ export default async function addMaterias(CONTENT){
     const select=await fetch("http://localhost:5227/carreras")
     const resSelect=await select.json();
     resSelect.forEach(carrera => {
-        console.log(carrera)
         const option=document.createElement("option");
         option.value=carrera.idCarrera;
         option.innerText=carrera.nombre;
@@ -41,7 +41,6 @@ export default async function addMaterias(CONTENT){
         const descripcion=document.getElementById("descripcion-materia").value;
         const duracion=document.getElementById("duracion-materia").value;
         const idCarrera=selectCarrera.value
-        console.log(idCarrera, nombre, descripcion, duracion)
 
 
         const res=await fetch("http://localhost:5227/materias",{

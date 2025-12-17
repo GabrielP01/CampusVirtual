@@ -48,7 +48,6 @@ public class Program
             app.UseSwaggerUI();
         }
 
-        // app.UseHttpsRedirection();
 
 
         app.UseCors("AllowFront");
@@ -94,11 +93,11 @@ public class Program
 
             var usuarios = (await multi.ReadAsync<Usuarios>()).ToList();
 
-            var roles = (await multi.ReadAsync<Roles>()).ToList();
+            var roles = (await multi.ReadAsync<UsuariosRoles>()).ToList();
 
             foreach (var user in usuarios)
             {
-                user.Roles = roles.Where(r => r.IDUsuario == user.IDUsuario).ToList();
+                user.UsuariosRoles = roles.Where(r => r.IDUsuario == user.IDUsuario).ToList();
             }
 
             return Results.Ok(usuarios);
@@ -117,9 +116,9 @@ public class Program
             );
             usuario.IDUsuario = ID;
 
-            if (usuario.Roles != null)
+            if (usuario.UsuariosRoles != null)
             {
-                foreach (var rol in usuario.Roles)
+                foreach (var rol in usuario.UsuariosRoles)
                 {
                     await connection.ExecuteAsync(
                         "UsuarioRoles_Insert",
@@ -147,8 +146,8 @@ public class Program
         {
             using var connection = new SqlConnection(connectionString);
 
-            var roles = await connection.QueryAsync<Roles>(
-                "Roles_List",
+            var roles = await connection.QueryAsync<UsuariosRoles>(
+                "UsuariosRoles_List",
                 commandType: System.Data.CommandType.StoredProcedure
             );
 
@@ -159,7 +158,7 @@ public class Program
         app.MapGet("/usuariosroles/{id}", async (int id) =>
         {
             using var connection = new SqlConnection(connectionString);
-            var roles = await connection.QueryAsync<Roles>(
+            var roles = await connection.QueryAsync<UsuariosRoles>(
                 "UsuariosRoles_ByUser",
                 new { IDUsuario = id },
                 commandType: System.Data.CommandType.StoredProcedure
@@ -418,6 +417,17 @@ public class Program
             );
             return asignacion is not null ? Results.Ok(asignacion) : Results.NotFound();
         });
+
+       app.MapGet("/roles", async () =>
+        {
+            using var connection=new SqlConnection(connectionString);
+            var roles=await connection.QueryAsync<Roles>(
+                "Roles_List",
+                commandType:System.Data.CommandType.StoredProcedure
+            );
+            return roles is not null ? Results.Ok(roles) : Results.NotFound();
+        });
+
 
         app.Run();
     }

@@ -8,7 +8,6 @@ export default async function materiaInscripcion(CONTENT) {
             auxArr.push("1")
         }
     })
-    console.log(res)
     if (auxArr.length == 0) {
         CONTENT.innerHTML = `
         <form id="form-inscripcion-carrera" class="forms">
@@ -41,7 +40,6 @@ export default async function materiaInscripcion(CONTENT) {
 
         const getMaterias = await fetch("http://localhost:5227/materias");
         const materias = await getMaterias.json();
-        console.log(res)
         const inscripcionUsuario = res.find(ins => ins.idUsuario == idUser);
 
         materias.forEach(materia => {

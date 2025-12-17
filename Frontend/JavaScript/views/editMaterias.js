@@ -6,6 +6,7 @@ export default async function editMaterias(CONTENT){
         <label for="select-materia">Seleccione materia a editar</label>
         <select id="select-materia">
         </select>
+        <br>
         <button>Editar</button>
     </form>
     `
@@ -13,7 +14,6 @@ export default async function editMaterias(CONTENT){
     const select=document.getElementById("select-materia");
     const res=await fetch("http://localhost:5227/materias");
     const materias= await res.json();
-    console.log(materias)
     materias.forEach(materia=>{
         const option=document.createElement("option");
         option.innerText=materia.nombre;
@@ -25,7 +25,6 @@ export default async function editMaterias(CONTENT){
     form.addEventListener("submit",async e=>{
         e.preventDefault();
         const edit=await fetch(`http://localhost:5227/materias/${select.value}`)
-        console.log(select.value)
 
         if(!edit.ok){
             alert("No existe esa materia")

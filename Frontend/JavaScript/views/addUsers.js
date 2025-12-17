@@ -1,6 +1,6 @@
 
 export default function addUsers(CONTENT){
-    const regExp=/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    
 
     CONTENT.innerHTML=`
     <form id="form-addusers" class="forms" >
@@ -10,10 +10,10 @@ export default function addUsers(CONTENT){
         <input type="text" id="input-nombre" placeholder="Nombre" maxlength="50" required>
         <br>
         <label for="input-mail">Mail:</label>
-        <input type="text" id="input-mail" placeholder="Mail" required pattern="${regExp}">
+        <input type="email" id="input-mail" placeholder="Mail" required>
         <br>
         <label for="input-dni">Numero de Documento:</label>
-        <input type="number" id="input-dni" placeholder="Numero de documento" required maxlength="20">
+        <input type="number" id="input-dni" placeholder="Numero de documento" required>
         <br>
         <label for="input-telefono">Telefono:</label>
         <input type="number" id="input-telefono" placeholder="Telefono" required maxlength="20">
@@ -39,18 +39,21 @@ export default function addUsers(CONTENT){
 
             </select>
         </div>
+        <br>
         <button type="submit" id="button-adduser">Agregar Usuario</button>
     </form>
     `
 
         async function getRoles(){
-            const res =await fetch("http://localhost:5227/usuariosroles")
+            const res =await fetch("http://localhost:5227/roles")
             const roles=await res.json();
             const select=document.getElementById("select-roles");
-            select.innerHTML="";
-            roles.forEach(rol => {
-                select.innerHTML += `<option value="${rol.rol}">${rol.rol}</option>`;
-            });
+            roles.forEach(r=>{
+                const option=document.createElement("option");
+                option.innerText=r.rol;
+                option.value=r.rol;
+                select.appendChild(option);
+            })
         }
         getRoles();
 
@@ -97,7 +100,6 @@ export default function addUsers(CONTENT){
             const roles=[]
             for(let i=0; i<rolesSelect.options.length; i++){
                 roles.push({ Rol: rolesSelect.options[i].value });
-                console.log(roles)
             }
             
             

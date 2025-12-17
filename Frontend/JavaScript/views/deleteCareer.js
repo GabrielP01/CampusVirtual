@@ -12,7 +12,6 @@ export default async function deleteCareer(CONTENT){
     const selectDeleteCareer=document.getElementById("select-delete-career");
         const inSelect=await fetch("http://localhost:5227/carreras")
         const res= await inSelect.json();
-        console.log(res)
         res.forEach(carrera => {
             const option=document.createElement("option");
             option.value=carrera.idCarrera;
@@ -23,7 +22,6 @@ export default async function deleteCareer(CONTENT){
     const form=document.getElementById("form-delete-career");
     form.addEventListener("submit",async e=>{
         e.preventDefault();
-        console.log(selectDeleteCareer)
         const careers = await fetch(`http://localhost:5227/carreras/${selectDeleteCareer.value}`,{
             method:"DELETE",
             headers:{"Content-Type":"application/json"},

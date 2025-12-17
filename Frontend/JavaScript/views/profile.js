@@ -2,7 +2,6 @@ export default async function profile(CONTENT){
     fetch(`http://localhost:5227/usuarios/${localStorage.getItem("iduser")}`)
     .then(response => response.json())
     .then(data => {
-        console.log(data)
         CONTENT.innerHTML=`
             <form class="forms" id="form-profile">
                 <h1>Perfil de ${data.nombre}</h1>
@@ -15,13 +14,13 @@ export default async function profile(CONTENT){
                 
                 <div>
                 <label for="profile-dni">Numero de documento</label>
-                <input type="text" id="profile-dni" value="${data.dni}">
+                <input type="number" id="profile-dni" value="${data.dni}">
                 </div>
                 <br>
                 
                 <div>
                 <label for="profile-mail">Mail</label>
-                <input type="text" id="profile-mail" value="${data.mail}">
+                <input type="email" id="profile-mail" value="${data.mail}">
                 </div>
                 <br>
 
@@ -39,8 +38,9 @@ export default async function profile(CONTENT){
                 
                 <div>
                 <label for="profile-password">Contraseña</label>
-                <input type="password" id="profile-password" value="*******">
+                <input type="password" id="profile-password">
                 </div>
+                <br>
                 <button type="submit" id="button-edit-profile">Editar Perfil</button>
             </form>
     `

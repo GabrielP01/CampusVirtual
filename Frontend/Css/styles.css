@@ -32,7 +32,6 @@ nav a {
     font-weight: 500;
     padding: 8px 14px;
     border-radius: 8px;
-    transition: 0.25s ease;
 }
 
 
@@ -43,6 +42,7 @@ nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    align-items: center;
 }
 
 nav li {
@@ -52,19 +52,13 @@ nav li {
 
 }
 
-#home-link {
-    margin-right: 1000px;
-}
-
 nav a:hover {
     background: #2e2e2e;
-    transform: translateY(-2px);
 }
 
 nav a.active {
     background: #4caf50; 
     color: white;
-    box-shadow: 0 3px 12px rgba(76, 175, 80, 0.6);
 }
 
 #header-div {

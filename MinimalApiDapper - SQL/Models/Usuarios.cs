@@ -11,5 +11,5 @@ public class Usuarios
     public string Telefono { get; set; }
     public string Direccion { get; set; }
     public string Password { get; set; }
-    public List<Roles> Roles { get; set; } =new List<Roles>();
+    public List<UsuariosRoles> UsuariosRoles { get; set; } =new List<UsuariosRoles>();
 }

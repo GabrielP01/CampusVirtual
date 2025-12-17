@@ -1,6 +1,4 @@
 
-
-
 export default async function carreraInscripcion(CONTENT){
     const tengoCarrera=await fetch("http://localhost:5227/inscripcionescarreras")
     const res=await tengoCarrera.json();
@@ -38,7 +36,6 @@ export default async function carreraInscripcion(CONTENT){
         const form=document.getElementById("form-inscripcion-carrera");
         form.addEventListener("submit",async e=>{
             e.preventDefault();
-            console.log(idUser,select.value)
             const inscribirse=await fetch("http://localhost:5227/inscripcionescarreras",{
                 method:"POST",
                 headers:{"Content-Type":"application/json"},

@@ -1,6 +1,5 @@
 import home from "../views/home.js"
 import profile from "../views/profile.js"
-import functions from "../views/functions.js"
 import formLogin from "../views/formLogin.js"
 import divLogout from "../views/divLogout.js"
 import addUsers from "../views/addUsers.js"
@@ -27,9 +26,6 @@ export default function routeHandler(route){
             break;
             case "/profile":
             profile(CONTENT);
-            break;
-            case "/functions":
-            functions(CONTENT);
             break;
             case "/login":
             formLogin(CONTENT);

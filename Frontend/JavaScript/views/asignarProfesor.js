@@ -8,6 +8,7 @@ export default async function asignarProfesor(CONTENT){
             <br>
             <label for="asign-materia">Selecciona la materia</label>
             <select id="asign-materia"></select>
+            <br>
             <button type="submit">Asignar</button>
         </form>
     `
@@ -25,7 +26,6 @@ export default async function asignarProfesor(CONTENT){
     const usuarios=await getUsuarios.json();
 
     usuariosRoles.forEach(prof=>{
-        console.log(prof)
         if(prof.rol=="PROFESOR"){
             usuarios.forEach(user=>{
                 if(prof.idUsuario==user.idUsuario){

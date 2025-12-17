@@ -14,7 +14,6 @@ export default async function editCareer(CONTENT) {
     const careers = await fetch("http://localhost:5227/carreras")
     const rescareers = await careers.json();
     rescareers.forEach(career => {
-        console.log(career)
         const option=document.createElement("option");
         option.value=career.idCarrera;
         option.innerText=career.nombre;
@@ -33,7 +32,6 @@ export default async function editCareer(CONTENT) {
             alert("a")
         }
         else{
-            console.log(careers)
             alert("Vas a editar la carrera "+selectCareer.innerText)
             CONTENT.innerHTML=`
             <form id="edit-career" class="forms">

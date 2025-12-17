@@ -7,10 +7,7 @@ export default function divLogout(CONTENT){
     
     async function getRoles(){
         const data=await fetch(`http://localhost:5227/usuariosroles/${localStorage.getItem("iduser")}`)
-        console.log(data)
         const resData=await data.json();
-        console.log(resData)
- 
         const select=document.getElementById("select-rol");
         select.innerHTML="";
         resData.forEach(rol => {
@@ -39,7 +36,6 @@ export default function divLogout(CONTENT){
     selectRol.addEventListener("change",(e)=>{
         const selectedRol=e.target.value;
         localStorage.setItem("rol", selectedRol);
-        console.log("Rol cambiado a: "+selectedRol);
         rolHandler();
     })
 
@@ -54,7 +50,6 @@ export default function divLogout(CONTENT){
         localStorage.setItem("rol", "GUESS");
         rolHandler();
         goHome(CONTENT)
-        console.log(localStorage.getItem("rol"));
 
         
         history.pushState({}, "", "/home");

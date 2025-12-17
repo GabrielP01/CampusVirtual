@@ -4,12 +4,12 @@ import home from "./home.js";
 
 
 export default function formLogin(CONTENT){
-    const regExp=/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    
 
     CONTENT.innerHTML=`
     <form id="login-form"class="forms">
         <label for="mail">mail</label>
-        <input type="text" id="mail" name="mail" pattern="${regExp}" required >
+        <input type="email" id="mail" name="mail" required >
         <br>
         <label for="password">Contraseña</label>
         <input type="password" id="password" name="password" required maxlength="40">

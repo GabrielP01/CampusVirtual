@@ -19,16 +19,7 @@ export default async function profesorNota(CONTENT) {
         </form>
         `
             const getUsuarios = await fetch("http://localhost:5227/usuarios")
-            const usuarios = await getUsuarios.json()
-
-
-
-            
-
-            
-            
-
-
+            const usuarios = await getUsuarios.json();
 
             const form = document.getElementById("form-agregar-nota");
             form.addEventListener("submit", async e => {
@@ -41,12 +32,9 @@ export default async function profesorNota(CONTENT) {
                 usuarios.forEach(u => {
                     if (dni == u.dni) {
                         idUsuario = u.idUsuario
-                        console.log(idUsuario)
                     }
                 })
-                console.log(nota)
-                console.log(idMateriaEvaluar)
-                console.log(idUsuario)
+                
 
                 const res = await fetch("http://localhost:5227/notas", {
                     method: "POST",

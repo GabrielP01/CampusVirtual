@@ -18,6 +18,7 @@ export default async function notas(CONTENT) {
             <h2>Notas de tus materias</h2>
             <br>
             <div id="notas-materias"></div>
+            <br>
             <button>Volver</button>
         </form>
     `

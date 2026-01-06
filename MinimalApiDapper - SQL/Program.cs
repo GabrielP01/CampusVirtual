@@ -12,6 +12,7 @@ using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using System.Data;
+using Microsoft.Extensions.Configuration;
 
 namespace MinimalApiDapper;
 
@@ -57,7 +58,7 @@ public class Program
 
 
 
-        string connectionString = "Server=DESKTOP-QZLN37\\SQLEXPRESS;Database=DBWebEscuelaFinal;User Id=UserWebEscuela;Password=DBLogin123;TrustServerCertificate=true";
+        string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
         
 
         app.MapPost("/login", async (LoginRequest req) =>
@@ -81,6 +82,19 @@ public class Program
             );
             return user is not null ? Results.Ok(user) : Results.NotFound();
         });
+
+        app.MapGet("/usuariosdni/{dni}", async (int dni) =>
+        {
+            using var connection = new SqlConnection(connectionString);
+            var user = await connection.QueryFirstOrDefaultAsync<Usuarios>(
+                "Usuarios_FindDni",
+                new { Dni = dni },
+                commandType: System.Data.CommandType.StoredProcedure
+            );
+            return user is not null ? Results.Ok(user) : Results.NotFound();
+        });
+
+        
 
         app.MapGet("/usuarios", async () =>
         {

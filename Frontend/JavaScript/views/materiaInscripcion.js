@@ -73,7 +73,7 @@ export default async function materiaInscripcion(CONTENT) {
             }
             else{
                 alert("Inscripcion exitosa")
-                routeHandler("/materiaInscripcion")
+                routeHandler("#/materiaInscripcion")
             }
 
         })

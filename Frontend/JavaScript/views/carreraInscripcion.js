@@ -49,7 +49,7 @@ export default async function carreraInscripcion(CONTENT){
             }
             else{
                 alert("Inscripcion exitosa")
-                routeHandler("/carrerainscripcion")
+                routeHandler("#/carrerainscripcion")
             }
         })
     }
@@ -82,7 +82,7 @@ export default async function carreraInscripcion(CONTENT){
                 alert("No se encontraron materias")
             }
             else{
-                routeHandler("/notas")
+                routeHandler("#/notas")
                 
             }
         })

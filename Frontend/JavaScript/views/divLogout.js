@@ -10,9 +10,10 @@ export default function divLogout(CONTENT){
         const resData=await data.json();
         const select=document.getElementById("select-rol");
         select.innerHTML="";
+        
         resData.forEach(rol => {
         select.innerHTML += `<option value="${rol.rol}">${rol.rol}</option>`;
-        
+        select.value=localStorage.getItem("rol");
     });
     };
     CONTENT.innerHTML=`
@@ -51,8 +52,6 @@ export default function divLogout(CONTENT){
         rolHandler();
         goHome(CONTENT)
 
-        
-        history.pushState({}, "", "/home");
         
     })
     

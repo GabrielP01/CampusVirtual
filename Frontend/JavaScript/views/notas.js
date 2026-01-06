@@ -55,7 +55,7 @@ export default async function notas(CONTENT) {
     form.addEventListener("submit",async e=>{
         e.preventDefault();
 
-        routeHandler("/")
+        routeHandler("#/")
     })
 }
 

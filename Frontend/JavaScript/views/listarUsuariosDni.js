@@ -41,7 +41,7 @@ export default async function listarUsuariosDni(CONTENT){
             const formUser=document.getElementById("form-mostrar-user");
             formUser.addEventListener("submit",async e=>{
                 e.preventDefault();
-                routeHandler("/")
+                routeHandler("#/")
             })
         }
 

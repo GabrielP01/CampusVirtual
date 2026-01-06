@@ -37,7 +37,7 @@ export default async function buscarMateria(CONTENT){
     form.addEventListener("submit",e=>{
         window.idMateriaEvaluar=selectMateria.value
         e.preventDefault();
-        routeHandler(`/profesorNota`)
+        routeHandler("#/profesorNota")
         
 
     })

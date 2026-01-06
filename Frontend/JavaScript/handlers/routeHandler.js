@@ -22,61 +22,62 @@ import listarUsuariosDni from "../views/listarUsuariosDni.js"
 export default function routeHandler(route){
     const CONTENT = document.getElementById("content")
     switch(route){
-            case "/":
+            
+            case "#/":
             home(CONTENT);
             break;
-            case "/profile":
+            case "#/profile":
             profile(CONTENT);
             break;
-            case "/login":
+            case "#/login":
             formLogin(CONTENT);
             break;
-            case "/logout":
+            case "#/logout":
             divLogout(CONTENT);
             break;
-            case "/addUsers":
+            case "#/addUsers":
             addUsers(CONTENT);
             break;
-            case "/deleteUsers":
+            case "#/deleteUsers":
             deleteUsers(CONTENT);
             break;
-            case "/addCareer":
+            case "#/addCareer":
             addCareer(CONTENT);
             break;
-            case "/editCareer":
+            case "#/editCareer":
             editCareer(CONTENT);
             break;
-            case "/deleteCareer":
+            case "#/deleteCareer":
             deleteCareer(CONTENT)
             break;
-            case "/addMaterias":
+            case "#/addMaterias":
             addMaterias(CONTENT);
             break;
-            case "/editMaterias":
+            case "#/editMaterias":
             editMaterias(CONTENT);
             break;
-            case "/deleteMaterias":
+            case "#/deleteMaterias":
             deleteMaterias(CONTENT);
             break;
-            case "/carreraInscripcion":
+            case "#/carreraInscripcion":
             carreraInscripcion(CONTENT);
             break;
-            case "/materiaInscripcion":
+            case "#/materiaInscripcion":
             materiaInscripcion(CONTENT);
             break;
-            case "/notas":
+            case "#/notas":
             notas(CONTENT)
             break;
-            case "/buscarMateria":
+            case "#/buscarMateria":
             buscarMateria(CONTENT);
             break;
-            case "/asignarProfesor":
+            case "#/asignarProfesor":
             asignarProfesor(CONTENT);
             break;
-            case "/profesorNota":
+            case "#/profesorNota":
             profesorNota(CONTENT);
             break;
-            case "/listarUsuariosDni":
+            case "#/listarUsuariosDni":
             listarUsuariosDni(CONTENT);
             break;
             default:
@@ -84,5 +85,6 @@ export default function routeHandler(route){
             break;
         }
 
+        
         window.routeHandler=routeHandler;
 }

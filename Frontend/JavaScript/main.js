@@ -1,27 +1,19 @@
-import rolHandler from "./handlers/rolHandler.js"
-import routeHandler from "./handlers/routeHandler.js"
-
-
-
-
+import rolHandler from "./handlers/rolHandler.js";
+import routeHandler from "./handlers/routeHandler.js";
 
 
 window.addEventListener("DOMContentLoaded", () => {
     rolHandler();
-    routeHandler(location.pathname);
-
+    routeHandler(location.hash || "#/");
 });
 
+window.addEventListener("hashchange", () => {
+    routeHandler(location.hash);
+});
 
-
-
-
-window.onpopstate = () => {
-    routeHandler(location.pathname);
-}
-
-
-
+window.addEventListener("load",()=>{ 
+    routeHandler(location.hash)
+});
 
 
 

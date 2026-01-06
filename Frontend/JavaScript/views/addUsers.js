@@ -129,5 +129,4 @@ export default function addUsers(CONTENT){
             alert("Error al agregar usuario")
         }
     })
-    history.pushState({}, "", "/addUsers")
 }

@@ -77,5 +77,5 @@ export default async function profile(CONTENT){
             }
         })
     });
-    history.pushState({}, "", "/profile")
+    history.pushState({}, "", "#/profile")
 }

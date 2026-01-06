@@ -25,15 +25,16 @@ export default async function editMaterias(CONTENT){
     form.addEventListener("submit",async e=>{
         e.preventDefault();
         const edit=await fetch(`http://localhost:5227/materias/${select.value}`)
-
         if(!edit.ok){
             alert("No existe esa materia")
         }
         else{
-            alert(`Vas a editar la materia: ${select.value}`)
+            const mat=await edit.json();
+            console.log(mat)
+            alert(`Vas a editar la materia: ${mat[0].nombre}`)
             CONTENT.innerHTML=`
                 <form class="forms" id="form-edit-materia">
-                    <h2>Estas editando ${select.innerText}</h2>
+                    <h2>Estas editando ${mat[0].nombre}</h2>
                     <br>
                     <label for="edit-materia-nombre">Nombre</label>
                     <input id="edit-materia-nombre" type="text" maxlength="50">
@@ -68,16 +69,16 @@ export default async function editMaterias(CONTENT){
                 const nombre=document.getElementById("edit-materia-nombre").value;
                 const descripcion=document.getElementById("edit-materia-descripcion").value;
                 const duracion=document.getElementById("edit-materia-duracion").value;
-                
 
-                const query=await fetch(`http://localhost:5227/materias/${selectCarrera.value}`,{
+                console.log(mat[0].idMateria)
+                const query=await fetch(`http://localhost:5227/materias/${mat[0].idMateria}`,{
                     method:"PUT",
                     headers:{"Content-Type":"application/json"},
                     body:JSON.stringify({
                         nombre,
                         descripcion,
                         duracion,
-                        idCarrera:selectCarrera.value
+                        idCarrera:mat[0].idCarrera
                     })
                 })
                 if(!query.ok){

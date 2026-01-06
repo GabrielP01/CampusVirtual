@@ -84,7 +84,7 @@ nav a.active {
 .forms {
     display: flex;
     flex-direction: column;
-    height: 50vh;
+    height: auto;
     gap: 15px;
     width: 300px;
     margin: 50px auto;
@@ -239,3 +239,16 @@ form select{
     width: 150px;
     height: 150px;
 }
+
+#form-mostrar-user{
+    height: auto;
+    width: 50vh;
+}
+
+
+#form-mostrar-user p{
+    text-align: center;
+}
+
+
+

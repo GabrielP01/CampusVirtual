@@ -42,14 +42,19 @@ export default async function materiaInscripcion(CONTENT) {
         const materias = await getMaterias.json();
         const inscripcionUsuario = res.find(ins => ins.idUsuario == idUser);
 
+        const inscripcionMateria= await fetch("http://localhost:5227/inscripcionesmaterias");
+        const resInscripcionMateria= await inscripcionMateria.json();
         materias.forEach(materia => {
-            if (materia.idCarrera == inscripcionUsuario.idCarrera) {
-                const option=document.createElement("option");
-                option.innerText=materia.nombre;
-                option.value=materia.idMateria;
-                select.appendChild(option)
-            }
-        });
+        const yaInscripto = resInscripcionMateria.some(insc =>
+        insc.idUsuario == idUser && insc.idMateria == materia.idMateria
+        );
+
+        if (materia.idCarrera == inscripcionUsuario.idCarrera && !yaInscripto) {
+            const option = document.createElement("option");
+            option.innerText = materia.nombre;
+            option.value = materia.idMateria;
+            select.appendChild(option);
+        }})
 
         const form=document.getElementById("form-inscribirse-materia");
         form.addEventListener("submit",async e=>{
@@ -68,6 +73,7 @@ export default async function materiaInscripcion(CONTENT) {
             }
             else{
                 alert("Inscripcion exitosa")
+                routeHandler("/materiaInscripcion")
             }
 
         })

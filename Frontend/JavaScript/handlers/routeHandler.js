@@ -16,6 +16,7 @@ import notas from "../views/notas.js"
 import asignarProfesor from "../views/asignarProfesor.js"
 import buscarMateria from "../views/buscarMateria.js"
 import profesorNota from "../views/profesorNota.js"
+import listarUsuariosDni from "../views/listarUsuariosDni.js"
 
 
 export default function routeHandler(route){
@@ -74,6 +75,9 @@ export default function routeHandler(route){
             break;
             case "/profesorNota":
             profesorNota(CONTENT);
+            break;
+            case "/listarUsuariosDni":
+            listarUsuariosDni(CONTENT);
             break;
             default:
                 home(CONTENT);

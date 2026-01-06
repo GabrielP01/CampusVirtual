@@ -49,6 +49,7 @@ export default async function carreraInscripcion(CONTENT){
             }
             else{
                 alert("Inscripcion exitosa")
+                routeHandler("/carrerainscripcion")
             }
         })
     }

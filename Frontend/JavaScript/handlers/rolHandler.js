@@ -11,6 +11,7 @@ export default function rolHandler(){
             <li><a href="/profile">Perfil</a></li>
             <li><a href="/addUsers">Agregar usuarios</a></li>
             <li><a href="/deleteUsers">Eliminar usuarios</a></li>
+            <li><a href="/listarUsuariosDni">Buscar usuario por dni</a></li>
             <li><a href="/logout">Salir</a></li>
         </ul>`;
             break;
